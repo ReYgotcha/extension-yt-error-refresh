@@ -45,10 +45,11 @@ function entryNode(e) {
   titleRow.append(title);
 
   if (e.attempts > 0) {
+    const why = e.reason === "black" ? "black screen" : "playback error";
     const pill = document.createElement("span");
     pill.className = "pill";
     pill.textContent = `↻ ${e.attempts}`;
-    pill.title = `Needed ${e.attempts} refresh${e.attempts === 1 ? "" : "es"} to play`;
+    pill.title = `${why} — needed ${e.attempts} refresh${e.attempts === 1 ? "" : "es"} to play`;
     titleRow.append(pill);
   }
 

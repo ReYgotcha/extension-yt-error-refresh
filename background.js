@@ -76,6 +76,7 @@ async function handleRefreshed(msg, tabId) {
   if (entry) {
     entry.attempts = msg.attempt;
     entry.lastRefreshTs = Date.now();
+    entry.reason = msg.reason;
     if (msg.title) entry.title = msg.title;
   } else {
     // No matching "opened" entry (e.g. it aged out of the cap) — log it anyway.
@@ -87,6 +88,7 @@ async function handleRefreshed(msg, tabId) {
       ts: Date.now(),
       attempts: msg.attempt,
       lastRefreshTs: Date.now(),
+      reason: msg.reason,
     });
   }
   await chrome.storage.session.set({ [HISTORY_KEY]: history.slice(0, HISTORY_MAX) });
