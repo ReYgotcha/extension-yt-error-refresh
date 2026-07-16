@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="popup.css" />
+  </head>
+  <body>
+    <header>
+      <img class="brand" src="icons/icon32.png" alt="" />
+      <div class="brand-text">
+        <strong>Auto-Refresh</strong>
+        <span id="summary">No viewed videos yet</span>
+      </div>
+      <button id="clear" title="Clear the history and reset the badge">Clear</button>
+    </header>
+
+    <ul id="log"></ul>
+
+    <p id="empty" class="empty">
+      Nothing here yet.<br />
+      Videos appear here as you watch YouTube.
+    </p>
+
+    <script src="popup.js"></script>
+  </body>
+</html>

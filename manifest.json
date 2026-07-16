@@ -1,0 +1,34 @@
+{
+  "manifest_version": 3,
+  "name": "YouTube Error Auto-Refresh",
+  "version": "1.3.0",
+  "description": "Reloads the page when the YouTube player fails with \"An error occurred. Please try again later.\"",
+  "permissions": ["storage", "tabs"],
+  "icons": {
+    "16": "icons/icon16.png",
+    "32": "icons/icon32.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
+  "action": {
+    "default_title": "YouTube Error Auto-Refresh",
+    "default_popup": "popup.html",
+    "default_icon": {
+      "16": "icons/icon16-gray.png",
+      "32": "icons/icon32-gray.png",
+      "48": "icons/icon48-gray.png",
+      "128": "icons/icon128-gray.png"
+    }
+  },
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": ["*://www.youtube.com/*", "*://m.youtube.com/*"],
+      "js": ["content.js"],
+      "run_at": "document_idle",
+      "all_frames": false
+    }
+  ]
+}
