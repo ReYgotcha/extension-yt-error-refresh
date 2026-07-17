@@ -165,7 +165,7 @@
     url.searchParams.set("_r", String(Date.now()));
 
     console.info(`[yt-error-refresh] ${reason} detected, reloading (attempt ${n}/${MAX_ATTEMPTS})`);
-    showOverlay(REASON_COPY[reason], `Refreshing… attempt ${n} of ${MAX_ATTEMPTS}`);
+    showOverlay(REASON_COPY[reason], "Refreshing…");
 
     let fired = false;
     const go = () => {
