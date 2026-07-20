@@ -233,14 +233,24 @@
     }
     errorSince = null;
 
-    if (playerStuck()) {
+    // Chrome deprioritizes video decode in background tabs — a tab opened with
+    // middle-click/cmd-click sits there with videoWidth 0 and a frozen
+    // currentTime for as long as it stays unfocused, indistinguishable from a
+    // real stuck player. Left ungated, the timer expires while you're not
+    // looking, then fires the instant you switch to the tab and playback
+    // actually starts. So this heuristic only runs on a visible tab, and never
+    // carries over time accrued while hidden.
+    if (document.hidden) {
+      stuckSince = null;
+    } else if (playerStuck()) {
       if (stuckSince === null) stuckSince = Date.now();
       if (Date.now() - stuckSince < STUCK_MS) return;
       if (attempts() >= MAX_ATTEMPTS) return;
       reload("black");
       return;
+    } else {
+      stuckSince = null;
     }
-    stuckSince = null;
   }
 
   // Clear the counter once a video has actually played for a while.

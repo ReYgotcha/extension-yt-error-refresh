@@ -38,6 +38,7 @@ This is a personal-use tool, distributed unpacked rather than through the Chrome
 - **1.5s confirmation** before acting on an error overlay, so a transient flicker doesn't trigger a reload.
 - **12s confirmation** before acting on a black player, and only while it's genuinely trying to play. A paused video is left alone (that's your choice, not a failure), and a single healthy sample resets the timer — during real playback the clock advances ~60×/sec, so normal watching can't accumulate 12s of "stuck".
 - **Attempt counter resets** once a video plays successfully for 5s, so an old failure doesn't count against a video that's now playing fine.
+- **Black-player detection only runs on a visible tab.** Chrome deprioritizes video decode in background tabs, so a video opened with middle-click/cmd-click sits at 0 frames the whole time it's unfocused — indistinguishable from a real stuck player. Time spent hidden never counts toward the 12s, so switching to a background tab plays normally instead of immediately triggering a reload.
 
 Tuning knobs live as constants at the top of [content.js](content.js) — `MAX_ATTEMPTS`, `BASE_DELAY_MS`, `CONFIRM_MS`, `STUCK_MS`, `HEALTHY_MS`, `OVERLAY_MIN_MS`.
 
