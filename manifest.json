@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "YouTube Error Auto-Refresh",
-  "version": "1.4.1",
+  "version": "1.4.2",
   "description": "Reloads the page when the YouTube player fails with \"An error occurred. Please try again later.\"",
   "permissions": ["storage", "tabs"],
   "icons": {
